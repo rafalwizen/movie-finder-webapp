@@ -6,16 +6,16 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8
 export async function GET(request: NextRequest) {
     try {
         const searchParams = request.nextUrl.searchParams;
-        const title = searchParams.get('title');
+        const movieId = searchParams.get('movieId');
 
-        if (!title) {
+        if (!movieId) {
             return NextResponse.json(
-                { error: 'Brak wymaganego parametru title' },
+                { error: 'Brak wymaganego parametru movieId' },
                 { status: 400 }
             );
         }
 
-        const url = `${API_BASE_URL}/api/screenings/search?title=${encodeURIComponent(title)}`;
+        const url = `${API_BASE_URL}/api/screenings/by-movie?movieId=${encodeURIComponent(movieId)}`;
 
         const response = await fetch(url, {
             cache: 'no-store',

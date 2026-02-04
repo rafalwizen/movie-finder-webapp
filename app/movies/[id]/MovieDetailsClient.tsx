@@ -23,7 +23,7 @@ export default function MovieDetailsClient({ movie }: MovieDetailsClientProps) {
             setError(null);
 
             try {
-                const response = await fetch(`/api/screenings?title=${encodeURIComponent(movie.title)}`);
+                const response = await fetch(`/api/screenings?movieId=${movie.id}`);
 
                 if (!response.ok) {
                     const errorData = await response.json();
@@ -40,7 +40,7 @@ export default function MovieDetailsClient({ movie }: MovieDetailsClientProps) {
         };
 
         fetchScreenings();
-    }, [movie.title]);
+    }, [movie.id]);
 
     return (
         <div className="min-h-screen bg-background">
