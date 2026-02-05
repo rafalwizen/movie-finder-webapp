@@ -2,6 +2,7 @@
 
 import { Screening } from '@/types';
 import { Calendar, MapPin, ExternalLink } from 'lucide-react';
+import { PROVIDERS } from '@/constants/providers';
 
 interface ScreeningCardProps {
     screening: Screening;
@@ -22,8 +23,13 @@ export default function ScreeningCard({ screening }: ScreeningCardProps) {
         <div className="bg-surface rounded-lg shadow-sm border border-surface-border p-4">
             <div className="flex items-start justify-between gap-3 mb-3">
                 <div>
-                    <h3 className="font-semibold text-text-primary">{screening.cinemaName}</h3>
-                    <div className="flex items-center gap-1 text-sm text-text-secondary mt-1">
+                    <div className="flex items-center gap-2 mb-1">
+                        <h3 className="font-semibold text-text-primary">{screening.cinemaName}</h3>
+                        <span className="px-2 py-0.5 text-xs font-medium bg-primary/10 text-primary rounded-full">
+                            {PROVIDERS[screening.providerCode as keyof typeof PROVIDERS] || screening.providerCode}
+                        </span>
+                    </div>
+                    <div className="flex items-center gap-1 text-sm text-text-secondary">
                         <MapPin className="w-4 h-4" />
                         <span>{screening.cinemaCity}, {screening.cinemaAddress}</span>
                     </div>

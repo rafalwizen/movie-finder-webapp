@@ -11,6 +11,7 @@ export interface Screening {
     cinemaCity: string;
     cinemaAddress: string;
     screeningUrl: string;
+    providerCode: string;
 }
 
 export interface ApiError {
