@@ -46,7 +46,7 @@ export default function ScreeningList({ screenings }: ScreeningListProps) {
                     <Search className="w-4 h-4 text-text-secondary" />
                     <input
                         type="text"
-                        placeholder="Szukaj po kinie, mieście lub rodzaju..."
+                        placeholder=" Szukaj po kinie, mieście lub rodzaju..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         className="flex-1 pl-4 pr-3 py-2 bg-background border border-surface-border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-primary"
