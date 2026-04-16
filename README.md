@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CinemaFinder
+
+A web application for searching movies and finding cinema screenings across Poland. Browse current screenings at **Cinema City** and **Multikino** chains, filter by city, date, and provider, then buy tickets directly.
+
+## Tech Stack
+
+- **Next.js 16** (App Router)
+- **React 19**
+- **TypeScript 5**
+- **Tailwind CSS v4**
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- A running backend API server (default: `http://localhost:8080`)
+
+### Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Configuration
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a `.env.local` file:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8080
+```
 
-## Learn More
+### Run
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Development
+npm run dev
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Production
+npm run build
+npm run start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Open [http://localhost:3000](http://localhost:3000).
 
-## Deploy on Vercel
+## Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+app/
+  page.tsx                    # Home — movie search
+  api/movies/route.ts         # Movies API proxy
+  api/screenings/route.ts     # Screenings API proxy
+  movies/[id]/                # Movie details + screenings
+components/
+  SearchBar.tsx               # Search input with debounce
+  MovieCard.tsx               # Movie poster card
+  MovieList.tsx               # Movie grid with empty state
+  ScreeningCard.tsx           # Screening info + ticket link
+  ScreeningList.tsx           # Filterable screenings list
+  LoadingSpinner.tsx          # Loading indicator
+  ErrorMessage.tsx            # Error display
+types/index.ts                # TypeScript interfaces
+constants/providers.ts        # Cinema provider names
+docs/API.md                   # Backend API documentation
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Features
+
+- Movie search with auto-complete debounce (300ms)
+- Screening filters: text search, date range, provider
+- Provider badges (Cinema City, Multikino)
+- Direct ticket purchase links
+- Responsive design with poster fallbacks
+- Polish language UI
+
+## API
+
+The frontend proxies requests to a separate backend through two endpoints:
+
+| Endpoint | Purpose |
+|---|---|
+| `GET /api/movies?q=<query>` | Search movies with active screenings |
+| `GET /api/screenings?movieId=<id>` | Get future screenings for a movie |
+
+See [`docs/API.md`](docs/API.md) for full backend documentation.
+
+## Scripts
+
+```bash
+npm run dev       # Start dev server
+npm run build     # Production build
+npm run start     # Start production server
+npm run lint      # Run ESLint
+```
