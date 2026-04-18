@@ -53,8 +53,12 @@ export default function MovieDetailsClient({ movie }: MovieDetailsClientProps) {
                 </button>
 
                 <div className="bg-surface rounded-lg shadow-sm border border-surface-border overflow-hidden mb-6">
-                    <div className="flex gap-4 p-4">
-                        <div className="w-24 h-36 flex-shrink-0 bg-background-dark rounded overflow-hidden">
+                    <div className="p-4">
+                        <div className="mb-4">
+                            <h1 className="text-xl font-bold text-text-primary mb-1">{movie.title}</h1>
+                            <p className="text-text-secondary">{movie.year}</p>
+                        </div>
+                        <div className="w-72 h-[432px] bg-background-dark rounded overflow-hidden">
                             <img
                                 src={movie.posterUrl}
                                 alt={movie.title}
@@ -63,10 +67,6 @@ export default function MovieDetailsClient({ movie }: MovieDetailsClientProps) {
                                     e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="150"%3E%3Crect fill="%23e5e7eb" width="100" height="150"/%3E%3C/svg%3E';
                                 }}
                             />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                            <h1 className="text-xl font-bold text-text-primary mb-1">{movie.title}</h1>
-                            <p className="text-text-secondary">{movie.year}</p>
                         </div>
                     </div>
                 </div>
