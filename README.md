@@ -73,6 +73,11 @@ docs/API.md                   # Backend API documentation
 - Responsive design with poster fallbacks
 - Polish language UI
 
+## Screenshots
+
+![Movie search](screenshots/Screenshot_1.png)
+![Movie details with screenings](screenshots/Screenshot_2.png)
+
 ## API
 
 The frontend proxies requests to a separate backend through two endpoints:
