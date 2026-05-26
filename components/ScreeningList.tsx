@@ -18,9 +18,9 @@ export default function ScreeningList({ screenings }: ScreeningListProps) {
         const searchLower = searchQuery.toLowerCase();
         const matchesSearch =
             !searchQuery ||
-            screening.cinemaName.toLowerCase().includes(searchLower) ||
-            screening.cinemaCity.toLowerCase().includes(searchLower) ||
-            screening.providerCode.toLowerCase().includes(searchLower);
+            screening.cinemaName?.toLowerCase().includes(searchLower) ||
+            screening.cinemaCity?.toLowerCase().includes(searchLower) ||
+            screening.providerCode?.toLowerCase().includes(searchLower);
 
         const screeningDate = new Date(screening.screeningDatetime);
         const matchesDateFrom = !dateFrom || screeningDate >= new Date(dateFrom);
