@@ -31,7 +31,7 @@ export default function ScreeningCard({ screening }: ScreeningCardProps) {
                     </div>
                     <div className="flex items-center gap-1 text-sm text-text-secondary">
                         <MapPin className="w-4 h-4" />
-                        <span>{screening.cinemaCity}, {screening.cinemaAddress}</span>
+                        <span>{[screening.cinemaCity, screening.cinemaAddress].filter(Boolean).join(', ') || 'Brak adresu'}</span>
                     </div>
                 </div>
             </div>
@@ -41,15 +41,21 @@ export default function ScreeningCard({ screening }: ScreeningCardProps) {
                 <span>{date}, {time}</span>
             </div>
 
-            <a
-                href={screening.screeningUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-sm text-primary hover:text-primary-dark font-medium transition-colors"
-            >
-                Kup bilet
-                <ExternalLink className="w-4 h-4" />
-            </a>
+            {screening.screeningUrl ? (
+                <a
+                    href={screening.screeningUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-sm text-primary hover:text-primary-dark font-medium transition-colors"
+                >
+                    Kup bilet
+                    <ExternalLink className="w-4 h-4" />
+                </a>
+            ) : (
+                <span className="inline-flex items-center gap-1 text-sm text-text-secondary">
+                    Brak linku do biletów
+                </span>
+            )}
         </div>
     );
 }

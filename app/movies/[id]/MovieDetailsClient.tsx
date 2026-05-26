@@ -60,7 +60,7 @@ export default function MovieDetailsClient({ movie }: MovieDetailsClientProps) {
                         </div>
                         <div className="w-72 h-[432px] bg-background-dark rounded overflow-hidden">
                             <img
-                                src={movie.posterUrl}
+                                src={movie.posterUrl ?? undefined}
                                 alt={movie.title}
                                 className="w-full h-full object-cover"
                                 onError={(e) => {
